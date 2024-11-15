@@ -37,7 +37,7 @@ CREATE TABLE NhanVien(
     MaNhanVien char(10) primary key,
     TenNhanVien nvarchar(30) NOT NULL,
     Role char(20) NOT NULL,
-    MaKhau char(30) NOT NULL,
+    MatKhau char(30) NOT NULL,
     Enable bit NOT NULL,
 
 );
@@ -148,18 +148,18 @@ VALUES
 ('SP010', N'Giày Cao Gót', 450000, 45, 'NCC05', 'MS10', 'S10', N'Giày nữ cao gót', 1);
 INSERT INTO KhachHang (MaKhachHang, TenKhachHang, DiaChi, SDT, Enable)
 VALUES 
-('KH001', N'Nguyen Van A', '123 Nguyen Trai, Hanoi', '0912345678', 1),
-('KH002', N'Tran Thi B', '456 Tran Hung Dao, HCMC', '0987654321', 1),
-('KH003', N'Le Thi C', '789 Le Loi, Da Nang', '0923456789', 1),
-('KH004', N'Pham Van D', '101 Phan Chu Trinh, Hai Phong', '0945678901', 1),
-('KH005', N'Hoang Thi E', '202 Hoang Van Thu, Hue', '0961234567', 1),
-('KH006', N'Dang Van F', '303 Hai Ba Trung, HCMC', '0934567890', 1),
-('KH007', N'Bui Thi G', '404 Bach Dang, Da Nang', '0976543210', 1),
-('KH008', N'Do Van H', '505 Ly Thuong Kiet, Hanoi', '0901234567', 1),
-('KH009', N'Vu Thi I', '606 Nguyen Hue, HCMC', '0954321098', 1),
-('KH010', N'Nguyen Van J', '707 Tran Phu, Nha Trang', '0998765432', 1);
+('KH001', N'Nguyen Van A', N'123 Nguyen Trai, Hanoi', '0912345678', 1),
+('KH002', N'Tran Thi B', N'456 Tran Hung Dao, HCMC', '0987654321', 1),
+('KH003', N'Le Thi C', N'789 Le Loi, Da Nang', '0923456789', 1),
+('KH004', N'Pham Van D', N'101 Phan Chu Trinh, Hai Phong', '0945678901', 1),
+('KH005', N'Hoang Thi E', N'202 Hoang Van Thu, Hue', '0961234567', 1),
+('KH006', N'Dang Van F', N'303 Hai Ba Trung, HCMC', '0934567890', 1),
+('KH007', N'Bui Thi G', N'404 Bach Dang, Da Nang', '0976543210', 1),
+('KH008', N'Do Van H', N'505 Ly Thuong Kiet, Hanoi', '0901234567', 1),
+('KH009', N'Vu Thi I', N'606 Nguyen Hue, HCMC', '0954321098', 1),
+('KH010', N'Nguyen Van J', N'707 Tran Phu, Nha Trang', '0998765432', 1);
 
-INSERT INTO NhanVien (MaNhanVien, TenNhanVien, Role, MaKhau, Enable)
+INSERT INTO NhanVien (MaNhanVien, TenNhanVien, Role, MatKhau, Enable)
 VALUES 
 ('NV001', N'Nguyen Van An', 'Admin', 'password001', 1),
 ('NV002', N'Tran Thi Bich', 'Manager', 'password002', 1),
@@ -223,3 +223,297 @@ VALUES
 
 select *
 from SanPham
+-- Khach Hang
+go
+CREATE PROCEDURE [dbo].[KhachHang__GetAll] 
+AS 
+SELECT * FROM [KhachHang]
+go
+-- Thủ tục thêm, xóa, sửa bảng Category  
+CREATE PROCEDURE [dbo].[KhachHang_InsertUpdateDelete] 
+     @maKhachHang char(10),
+	 @tenKhachHang nvarchar(35),
+	 @diaChi nvarchar(100),
+	 @sdt char(12),
+	 @enable bit,
+    @Action int 
+AS
+
+IF @Action = 0  
+ BEGIN 
+  INSERT INTO [KhachHang] ([MaKhachHang],[TenKhachHang],[DiaChi],[SDT],[Enable]) 
+  VALUES (@maKhachHang, @tenKhachHang,@diaChi,@sdt,@enable) 
+ END 
+ 
+ELSE IF @Action = 1  
+ BEGIN 
+  UPDATE [KhachHang] SET [TenKhachHang] = @tenKhachHang,[DiaChi]=@diaChi,
+  [SDT]=@sdt,[Enable]=@enable
+  WHERE [MaKhachHang] = @maKhachHang
+ END 
+ELSE IF @Action = 2  
+ BEGIN 
+  DELETE FROM [KhachHang] WHERE [MaKhachHang] = @maKhachHang
+ END
+ go
+ --Size
+ CREATE PROCEDURE [dbo].[Size_GetAll]
+AS
+SELECT * FROM Size
+go
+Create PROCEDURE [dbo].[Size_InsertUpdateDelete]
+
+ @MaSize char(10),
+ @TenSize nvarchar(10),
+ @Enable int,
+ @Action int 
+AS
+IF @Action = 0
+BEGIN
+INSERT INTO [Size] ([MaSize],[TenSize],[Enable])
+VALUES (@MaSize, @TenSize,@Enable)
+END
+ELSE IF @Action = 1
+BEGIN
+UPDATE [Size] SET [TenSize]=@TenSize, [Enable]=@Enable
+WHERE [MaSize] = @MaSize
+END
+ELSE IF @Action = 2
+BEGIN
+DELETE FROM [Size] WHERE [MaSize] = @MaSize
+END
+go
+
+
+--Mau Sac
+CREATE PROCEDURE [dbo].[MauSac_GetAll]
+AS
+SELECT * FROM MauSac
+go
+Create PROCEDURE [dbo].[MauSac_InsertUpdateDelete]
+
+ @MaMau char(10),
+ @TenMau nvarchar(20),
+ @Enable int,
+ @Action int
+AS
+IF @Action = 0
+BEGIN
+INSERT INTO [MauSac] ([MaMau],[TenMau],[Enable])
+VALUES (@MaMau, @TenMau,@Enable)
+
+END
+ELSE IF @Action = 1
+BEGIN
+UPDATE [MauSac] SET [TenMau]=@TenMau, [Enable]=@Enable
+WHERE [MaMau] = @MaMau
+END
+ELSE IF @Action = 2
+BEGIN
+DELETE FROM [MauSac] WHERE [MaMau] = @MaMau
+END
+go
+
+
+ -- San Pham
+ CREATE PROCEDURE [dbo].[SanPham_GetAll]
+AS
+SELECT * FROM SanPham
+go
+
+ Create PROCEDURE [dbo].[SanPham_InsertUpdateDelete]
+
+ @MaSP char(10),
+ @TenSP nvarchar(35),
+ @GiaBan int,
+ @SLTon int,
+ @NhaCungCap nvarchar(35),
+ @IDMau char(10),
+ @IDSize char(10),
+ @GhiChu nvarchar(100),
+ @Enable int,
+ @Action int 
+AS
+IF @Action = 0
+BEGIN
+INSERT INTO [SanPham] ([MaSP],[TenSP],[GiaBan],[SLTon],[NhaCungCap],[IDMau],[IDSize],[GhiChu],[Enable])
+VALUES (@MaSP, @TenSP,@GiaBan,@SLTon,@NhaCungCap,@IDMau,@IDSize,@GhiChu,@Enable)
+
+END
+ELSE IF @Action = 1
+BEGIN
+UPDATE [SanPham] SET [TenSP]=@TenSP,[GiaBan]=@GiaBan,[SLTon]=@SLTon,[NhaCungCap]=@NhaCungCap,[IDMau]=@IDMau,[IDSize]=@IDSize,[GhiChu]=@GhiChu,[Enable]=@Enable
+WHERE [MaSP] = @MaSP
+END
+ELSE IF @Action = 2
+BEGIN
+DELETE FROM [SanPham] WHERE [MaSP] = @MaSP
+END
+go
+--Chi Tiet Hoa Don
+CREATE PROCEDURE [dbo].[ChiTietHoaDon_GetAll]
+AS
+SELECT * FROM ChiTietHoaDon
+go
+Create PROCEDURE [dbo].[ChiTietHoaDon_InsertUpdateDelete]
+
+ @MaHD char(10),
+ @MaSP char(10),
+ @SL int,
+ @GiaBan int,
+ @GhiChu nvarchar(255),
+ @Enable int,
+ @Action int 
+AS
+IF @Action = 0
+BEGIN
+INSERT INTO [ChiTietHoaDon] ([MaHD],[MaSP],[SL],[GiaBan],[GhiChu],[Enable])
+VALUES (@MaHD,@MaSP,@SL,@GiaBan,@GhiChu, @Enable)
+
+END
+ELSE IF @Action = 1
+BEGIN
+UPDATE [ChiTietHoaDon] SET [SL] = @SL, [GiaBan]=@GiaBan,[GhiChu]=@GhiChu,[Enable]=@Enable
+WHERE [MaHD] = @MaHD and [MaSP]=@MaSP
+END
+ELSE IF @Action = 2
+BEGIN
+DELETE FROM [ChiTietHoaDon] WHERE [MaHD] = @MaHD and [MaSP]=@MaSP
+END
+go
+--Chi Tiet Phieu nhap
+CREATE PROCEDURE [dbo].[ChiTietPhieuNhap_GetAll]
+AS
+SELECT * FROM ChiTietPhieuNhap
+go
+
+CREATE PROCEDURE [dbo].[ChiTietPhieuNhap_InsertUpdateDelete]
+ @MaPhieuNhap nvarchar(10),
+ @MaSP char(10),
+ @SL int,
+ @GiaNhap int,
+ @GhiChu nvarchar(255),
+ @Enable int,
+ @Action int
+AS
+
+IF @Action = 0
+BEGIN
+INSERT INTO [ChiTietPhieuNhap] ([MaPhieuNhap],[MaSP], [SL],[GiaNhap],[GhiChu],[Enable])
+VALUES (@MaPhieuNhap,@MaSP,@SL,@GiaNhap,@GhiChu,@Enable)
+END
+
+ELSE IF @Action = 1
+BEGIN
+UPDATE [ChiTietPhieuNhap] SET [SL]=@SL, [GiaNhap]=@GiaNhap, [GhiChu]=@GhiChu, [Enable]=@Enable 
+WHERE [MaPhieuNhap] = @MaPhieuNhap and [MaSP]=@MaSP
+END
+
+ELSE IF @Action = 2
+BEGIN
+DELETE FROM [ChiTietPhieuNhap] WHERE [MaPhieuNhap] = @MaPhieuNhap and [MaSP]=@MaSP
+END
+go
+
+--Nhan Vien
+CREATE PROCEDURE [dbo].[NhanVien_GetAll]
+AS
+SELECT * FROM NhanVien	
+go
+CREATE PROCEDURE [dbo].[NhanVien_InsertUpdateDelete]
+ @MaNhanVien char(10),
+ @TenNhanVien nvarchar(30),
+ @Role char(20),
+ @MatKhau char(30),
+ @Enable int,
+ @Action int
+AS
+
+IF @Action = 0
+BEGIN
+INSERT INTO [NhanVien] ([MaNhanVien],[TenNhanVien],[Role],[MatKhau],[Enable])
+VALUES (@MaNhanVien, @TenNhanVien,@Role,@MatKhau,@Enable)
+END
+
+ELSE IF @Action = 1
+BEGIN
+UPDATE [NhanVien] SET [TenNhanVien] = @TenNhanVien, [Role]=@Role, [MatKhau]=@MatKhau, [Enable]=@Enable
+WHERE [MaNhanVien] = @MaNhanVien
+END
+
+ELSE IF @Action = 2
+BEGIN
+DELETE FROM [NhanVien] WHERE [MaNhanVien] = @MaNhanVien
+END
+go
+--Hoa Don
+CREATE PROCEDURE [dbo].[HoaDon_GetAll]
+AS
+SELECT * FROM HoaDon
+go
+
+Create PROCEDURE [dbo].[HoaDon_InsertUpdateDelete]
+
+ @MaHoaDon char(10),
+ @NgayLap date,
+ @TongTien int,
+ @MaKH char(10),
+ @MaNV char(10),
+ @TrangThai varchar(255),
+ @Enable int,
+ @Action int -- Biến cho biết thêm, xóa, hay sửa
+AS
+-- Nếu Action = 0, thực hiện thêm dữ liệu
+IF @Action = 0
+BEGIN
+INSERT INTO [HoaDon] ([MaHoaDon],[NgayLap],[TongTien],[MaKH],[MaNV],[TrangThai],[Enable])
+VALUES (@MaHoaDon, @NgayLap,@TongTien,@MaKH,@MaNV,@TrangThai,@Enable)
+
+END
+-- Nếu Action = 1, thực hiện cập nhật dữ liệu
+ELSE IF @Action = 1
+BEGIN
+UPDATE [HoaDon] SET [NgayLap] = @NgayLap, [TongTien]=@TongTien,[MaKH]=@MaKH,[TrangThai]=@TrangThai,[Enable]=@Enable
+WHERE [MaHoaDon] = @MaHoaDon
+END
+-- Nếu Action = 2, thực hiện xóa dữ liệu
+ELSE IF @Action = 2
+BEGIN
+DELETE FROM [HoaDon] WHERE [MaHoaDon] = @MaHoaDon
+END
+go
+
+
+--Phieu Nhap Hang
+CREATE PROCEDURE [dbo].[PhieuNhapHang_GetAll]
+AS
+SELECT * FROM PhieuNhapHang
+go
+
+CREATE PROCEDURE [dbo].[PhieuNhapHang_InsertUpdateDelete]
+ @MaPhieuNhap char(10),
+ @NgayNhap date,
+ @NhaCungCap nvarchar(35),
+ @MaNhanVien char(10),
+ @Enable int,
+ @Action int -- Biến cho biết thêm, xóa, hay sửa
+AS
+-- Nếu Action = 0, thực hiện thêm dữ liệu
+IF @Action = 0
+BEGIN
+INSERT INTO [PhieuNhapHang] ([MaPhieuNhap],[NgayNhap],[NhaCungCap],[MaNhanVien],[Enable])
+VALUES (@MaPhieuNhap, @NgayNhap,@NhaCungCap,@MaNhanVien,@Enable)
+END
+-- Nếu Action = 1, thực hiện cập nhật dữ liệu
+ELSE IF @Action = 1
+BEGIN
+UPDATE [PhieuNhapHang] SET [NgayNhap] = @NgayNhap, [NhaCungCap]=@NhaCungCap, [MaNhanVien]=@MaNhanVien, [Enable]=@Enable
+WHERE [MaPhieuNhap] = @MaPhieuNhap	
+END
+-- Nếu Action = 2, thực hiện xóa dữ liệu
+ELSE IF @Action = 2
+BEGIN
+DELETE FROM [PhieuNhapHang] WHERE [MaPhieuNhap] = @MaPhieuNhap
+END
+go
+

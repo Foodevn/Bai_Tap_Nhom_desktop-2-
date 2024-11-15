@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess1
+namespace BusinessLog
 {
-    public class Class1
-    {
-    }
+	internal class FileName
+	{
+	}
 }
