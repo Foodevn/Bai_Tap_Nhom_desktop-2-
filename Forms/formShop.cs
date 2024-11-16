@@ -1,4 +1,5 @@
-﻿using Quan_ly_Shop_Quan_ao_1;
+﻿
+using Quan_ly_Shop_Quan_ao_1;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,11 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using BusinessLog;
+using DataAccess1;
 
 namespace quan_ly_shop_quan_ao
 {
 	public partial class formShop : Form
 	{
+		List<KhachHang> listKhachHang=new List<KhachHang>();
+		KhachHang khachHang;
 		public formShop()
 		{
 			InitializeComponent();
@@ -29,22 +34,16 @@ namespace quan_ly_shop_quan_ao
 		}
 		public void TaiDanhSach1()
 		{
-			List<string[]> danhSachSanPham = new List<string[]>
+			KhachHangBL khachHangBL = new KhachHangBL();
+			listKhachHang = khachHangBL.GetAll();
+			int count = 1;
+			foreach(KhachHang khachHang in listKhachHang)
 			{
-				new string[] { "MH003", "quần tây 3", "150.000","1%", "10" },
-				new string[] { "Mt004", "áo thun 4", "250.000", "0%", "2" },
-				new string[] { "MH005", "áo dj 6", "250.000", "1%", "21" },
-				new string[] { "Mk006", "quần què 5", "250.000","12%", "22" },
-				new string[] { "Mk007", "áo caro 7", "250.000","4%", "27" }
+				ListViewItem item = lvDS.Items.Add(count.ToString());
+				item.SubItems.Add(khachHang.TenKhachHang);
 
-			};
 
-			foreach (string[] sanPham in danhSachSanPham)
-			{
-				ListViewItem item = new ListViewItem(sanPham);
-				lvDS.Items.Add(item);
 			}
-			lvDS.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
 		}
 		

@@ -229,9 +229,9 @@ CREATE PROCEDURE [dbo].[KhachHang__GetAll]
 AS 
 SELECT * FROM [KhachHang]
 go
--- Thủ tục thêm, xóa, sửa bảng Category  
+  
 CREATE PROCEDURE [dbo].[KhachHang_InsertUpdateDelete] 
-     @maKhachHang char(10),
+     @maKhachHang char(10) output,
 	 @tenKhachHang nvarchar(35),
 	 @diaChi nvarchar(100),
 	 @sdt char(12),
@@ -263,7 +263,7 @@ SELECT * FROM Size
 go
 Create PROCEDURE [dbo].[Size_InsertUpdateDelete]
 
- @MaSize char(10),
+ @MaSize char(10)output,
  @TenSize nvarchar(10),
  @Enable int,
  @Action int 
@@ -292,7 +292,7 @@ SELECT * FROM MauSac
 go
 Create PROCEDURE [dbo].[MauSac_InsertUpdateDelete]
 
- @MaMau char(10),
+ @MaMau char(10)output,
  @TenMau nvarchar(20),
  @Enable int,
  @Action int
@@ -323,7 +323,7 @@ go
 
  Create PROCEDURE [dbo].[SanPham_InsertUpdateDelete]
 
- @MaSP char(10),
+ @MaSP char(10)output,
  @TenSP nvarchar(35),
  @GiaBan int,
  @SLTon int,
@@ -357,8 +357,8 @@ SELECT * FROM ChiTietHoaDon
 go
 Create PROCEDURE [dbo].[ChiTietHoaDon_InsertUpdateDelete]
 
- @MaHD char(10),
- @MaSP char(10),
+ @MaHD char(10)output,
+ @MaSP char(10)output,
  @SL int,
  @GiaBan int,
  @GhiChu nvarchar(255),
@@ -388,8 +388,8 @@ SELECT * FROM ChiTietPhieuNhap
 go
 
 CREATE PROCEDURE [dbo].[ChiTietPhieuNhap_InsertUpdateDelete]
- @MaPhieuNhap nvarchar(10),
- @MaSP char(10),
+ @MaPhieuNhap nvarchar(10)output,
+ @MaSP char(10)output,
  @SL int,
  @GiaNhap int,
  @GhiChu nvarchar(255),
@@ -421,7 +421,7 @@ AS
 SELECT * FROM NhanVien	
 go
 CREATE PROCEDURE [dbo].[NhanVien_InsertUpdateDelete]
- @MaNhanVien char(10),
+ @MaNhanVien char(10)output,
  @TenNhanVien nvarchar(30),
  @Role char(20),
  @MatKhau char(30),
@@ -454,7 +454,7 @@ go
 
 Create PROCEDURE [dbo].[HoaDon_InsertUpdateDelete]
 
- @MaHoaDon char(10),
+ @MaHoaDon char(10)output,
  @NgayLap date,
  @TongTien int,
  @MaKH char(10),
@@ -491,7 +491,7 @@ SELECT * FROM PhieuNhapHang
 go
 
 CREATE PROCEDURE [dbo].[PhieuNhapHang_InsertUpdateDelete]
- @MaPhieuNhap char(10),
+ @MaPhieuNhap char(10)output,
  @NgayNhap date,
  @NhaCungCap nvarchar(35),
  @MaNhanVien char(10),

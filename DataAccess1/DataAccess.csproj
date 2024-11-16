@@ -42,6 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassDA\ChiTietHoaDonDA.cs" />
+    <Compile Include="ClassDA\ChiTietPhieuNhapDA.cs" />
+    <Compile Include="ClassDA\HoaDonDA.cs" />
+    <Compile Include="ClassDA\KhachHangDA.cs" />
+    <Compile Include="ClassDA\MauSacDA.cs" />
+    <Compile Include="ClassDA\NhanVienDA.cs" />
+    <Compile Include="ClassDA\PhieuNhapHangDA.cs" />
+    <Compile Include="ClassDA\SanPhamDA.cs" />
+    <Compile Include="ClassDA\SizeDA.cs" />
     <Compile Include="Class\ChiTietHoaDon.cs" />
     <Compile Include="Class\ChiTietPhieuNhap.cs" />
     <Compile Include="Class\HoaDon.cs" />
@@ -54,5 +63,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ultilities.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

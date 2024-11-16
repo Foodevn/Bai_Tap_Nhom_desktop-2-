@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLog
 {
-	internal class FileName
+	internal class NhanVienBL
 	{
 	}
 }

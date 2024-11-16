@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace Quan_ly_Shop_Quan_ao_1
 {
 	internal static class Program
@@ -16,10 +17,11 @@ namespace Quan_ly_Shop_Quan_ao_1
 		[STAThread]
 		static void Main()
 		{
+			
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new formDangNhap());
-			//Application.Run(new formShop());
+			//Application.Run(new formDangNhap());
+			Application.Run(new formShop());
 			//Application.Run(new menu());
 			//Application.Run(new test());
 		}

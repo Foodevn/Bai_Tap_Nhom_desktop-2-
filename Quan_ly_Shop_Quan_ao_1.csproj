@@ -243,5 +243,15 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="BusinessLog\BusinessLog.csproj">
+      <Project>{dd48ba8a-0ce9-4f4c-8ba1-114242dfbdb9}</Project>
+      <Name>BusinessLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="DataAccess1\DataAccess.csproj">
+      <Project>{2d1bb637-ba5c-4c85-b6a3-d431050b98b1}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLog
 {
-	internal class Class2
+	internal class ChiTietHoaDonBL
 	{
 	}
 }
