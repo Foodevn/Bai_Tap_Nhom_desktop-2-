@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Quan_ly_Shop_Quan_ao_1</RootNamespace>
     <AssemblyName>Quan_ly_Shop_Quan_ao_1</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -29,6 +29,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -113,7 +114,6 @@
     <Compile Include="Forms\FrmXemLaiHoaDon.Designer.cs">
       <DependentUpon>FrmXemLaiHoaDon.cs</DependentUpon>
     </Compile>
-    <Compile Include="HangHoa.cs" />
     <Compile Include="Forms\Lapphieunhaphangmoi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,11 +245,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="BusinessLog\BusinessLog.csproj">
-      <Project>{dd48ba8a-0ce9-4f4c-8ba1-114242dfbdb9}</Project>
+      <Project>{e97f5fb5-5000-40a4-b653-8658f5023650}</Project>
       <Name>BusinessLog</Name>
     </ProjectReference>
-    <ProjectReference Include="DataAccess1\DataAccess.csproj">
-      <Project>{2d1bb637-ba5c-4c85-b6a3-d431050b98b1}</Project>
+    <ProjectReference Include="DataAccess\DataAccess.csproj">
+      <Project>{cd320639-4732-4a55-a3f1-bfe38adfd6f4}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
   </ItemGroup>

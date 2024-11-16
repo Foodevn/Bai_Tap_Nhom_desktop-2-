@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using BusinessLog;
-using DataAccess1;
+using DataAccess;
 
 namespace quan_ly_shop_quan_ao
 {

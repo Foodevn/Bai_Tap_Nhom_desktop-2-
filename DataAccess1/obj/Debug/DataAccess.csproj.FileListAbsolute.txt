@@ -1,2 +1,0 @@
-C:\Users\hoang\source\repos\Quan_ly_Shop_Quan_ao_1 - Copy (2)\DataAccess1\obj\Debug\DataAccess.csproj.AssemblyReference.cache
-C:\Users\hoang\source\repos\Quan_ly_Shop_Quan_ao_1 - Copy (2)\DataAccess1\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache

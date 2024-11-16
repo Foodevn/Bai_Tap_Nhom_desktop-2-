@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess1;
-using DataAccess1.ClassDA;
-
+using DataAccess.ClassDA;
+using DataAccess;
 namespace BusinessLog
 {
 	public class KhachHangBL
